@@ -19,70 +19,61 @@ namespace Microsoft.Xna.Framework.Input
 		/// <summary>
 		/// Gets horizontal position of the cursor.
 		/// </summary>
-		public int X
-		{
-			get;
-			internal set;
-		}
+		public int X { get; internal set; }
 
 		/// <summary>
 		/// Gets vertical position of the cursor.
 		/// </summary>
-		public int Y
-		{
-			get;
-			internal set;
-		}
+		public int Y { get; internal set; }
 
 		/// <summary>
 		/// Gets state of the left mouse button.
 		/// </summary>
-		public ButtonState LeftButton
-		{
-			get;
-			internal set;
-		}
+		public ButtonState LeftButton { get; internal set; }
 
 		/// <summary>
 		/// Gets state of the right mouse button.
 		/// </summary>
-		public ButtonState RightButton
-		{
-			get;
-			internal set;
-		}
+		public ButtonState RightButton { get; internal set; }
 
 		/// <summary>
 		/// Gets state of the middle mouse button.
 		/// </summary>
-		public ButtonState MiddleButton
-		{
-			get;
-			internal set;
-		}
+		public ButtonState MiddleButton { get; internal set; }
 
 		/// <summary>
 		/// Gets state of the XButton1.
 		/// </summary>
-		public ButtonState XButton1
-		{
-			get;
-			internal set;
-		}
+		public ButtonState XButton1 { get; internal set; }
 
 		/// <summary>
 		/// Gets state of the XButton2.
 		/// </summary>
-		public ButtonState XButton2
+		public ButtonState XButton2 { get; internal set; }
+
+		public int ScrollWheelY { get; internal set; }
+
+		public int ScrollWheelValue
+		{
+			get
+			{
+				return ScrollWheelY;
+			}
+		}
+
+	public int ScrollWheelX
 		{
 			get;
 			internal set;
 		}
 
-		/// <summary>
-		/// Returns cumulative scroll wheel value since the game start.
-		/// </summary>
-		public int ScrollWheelValue
+		public float ScrollWheelPreciseY
+		{
+			get;
+			internal set;
+		}
+
+		public float ScrollWheelPreciseX
 		{
 			get;
 			internal set;
@@ -110,7 +101,10 @@ namespace Microsoft.Xna.Framework.Input
 		public MouseState (
 			int x,
 			int y,
-			int scrollWheel,
+			int scrollWheelY,
+			int scrollWheelX,
+			float scrollWheelPreciseY,
+			float scrollWheelPreciseX,
 			ButtonState leftButton,
 			ButtonState middleButton,
 			ButtonState rightButton,
@@ -119,7 +113,10 @@ namespace Microsoft.Xna.Framework.Input
 		) : this() {
 			X = x;
 			Y = y;
-			ScrollWheelValue = scrollWheel;
+			ScrollWheelY = scrollWheelY;
+			ScrollWheelX = scrollWheelX;
+			ScrollWheelPreciseY = scrollWheelPreciseY;
+			ScrollWheelPreciseX = scrollWheelPreciseX;
 			LeftButton = leftButton;
 			MiddleButton = middleButton;
 			RightButton = rightButton;
@@ -144,7 +141,10 @@ namespace Microsoft.Xna.Framework.Input
 					left.LeftButton == right.LeftButton &&
 					left.MiddleButton == right.MiddleButton &&
 					left.RightButton == right.RightButton &&
-					left.ScrollWheelValue == right.ScrollWheelValue	);
+					left.ScrollWheelPreciseX == right.ScrollWheelPreciseX &&
+					left.ScrollWheelPreciseY == right.ScrollWheelPreciseY  &&
+					left.ScrollWheelX == right.ScrollWheelX &&
+					left.ScrollWheelY == right.ScrollWheelY	);
 		}
 
 		/// <summary>
@@ -223,13 +223,7 @@ namespace Microsoft.Xna.Framework.Input
 			{
 				buttons = "None";
 			}
-			return string.Format(
-				"[MouseState X={0}, Y={1}, Buttons={2}, Wheel={3}]",
-				X,
-				Y,
-				buttons,
-				ScrollWheelValue
-			);
+			return $"[MouseState X={X}, Y={Y}, Buttons={buttons}, WheelX={ScrollWheelX}, WheelY={ScrollWheelY}]";
 		}
 
 		#endregion

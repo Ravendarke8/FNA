@@ -902,7 +902,10 @@ namespace Microsoft.Xna.Framework
 				else if (evt.type == SDL.SDL_EventType.SDL_MOUSEWHEEL)
 				{
 					// 120 units per notch. Because reasons.
-					Mouse.INTERNAL_MouseWheel += evt.wheel.y * 120;
+					Mouse.INTERNAL_MouseWheelY += evt.wheel.y * 120;
+					Mouse.INTERNAL_MouseWheelX += evt.wheel.x * 120;
+					Mouse.INTERNAL_MouseWheelPreciseY += evt.wheel.preciseY;
+					Mouse.INTERNAL_MouseWheelPreciseX += evt.wheel.preciseX;
 				}
 
 				// Touch Input
@@ -1096,7 +1099,7 @@ namespace Microsoft.Xna.Framework
 					}
 				}
 
-				else if (evt.type == SDL.SDL_EventType.SDL_TEXTEDITING) 
+				else if (evt.type == SDL.SDL_EventType.SDL_TEXTEDITING)
 				{
 					int bytes = MeasureStringLength(evt.edit.text);
 					if (bytes > 0)
@@ -1122,6 +1125,7 @@ namespace Microsoft.Xna.Framework
 					game.RunApplication = false;
 					break;
 				}
+
 			}
 			// Text Input Controls Key Handling
 			for (int i = 0; i < FNAPlatform.TextInputCharacters.Length; i += 1)

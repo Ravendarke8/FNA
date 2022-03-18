@@ -47,7 +47,10 @@ namespace Microsoft.Xna.Framework.Input
 		internal static int INTERNAL_BackBufferWidth = GraphicsDeviceManager.DefaultBackBufferWidth;
 		internal static int INTERNAL_BackBufferHeight = GraphicsDeviceManager.DefaultBackBufferHeight;
 
-		internal static int INTERNAL_MouseWheel = 0;
+		internal static int INTERNAL_MouseWheelY = 0;
+		internal static int INTERNAL_MouseWheelX = 0;
+		internal static float INTERNAL_MouseWheelPreciseY = 0;
+		internal static float INTERNAL_MouseWheelPreciseX = 0;
 
 		#endregion
 
@@ -87,7 +90,10 @@ namespace Microsoft.Xna.Framework.Input
 			return new MouseState(
 				x,
 				y,
-				INTERNAL_MouseWheel,
+				INTERNAL_MouseWheelY,
+				INTERNAL_MouseWheelX,
+				INTERNAL_MouseWheelPreciseY,
+				INTERNAL_MouseWheelPreciseX,
 				left,
 				middle,
 				right,

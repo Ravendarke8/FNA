@@ -27,7 +27,7 @@ namespace Microsoft.Xna.Framework.Graphics
 			{
 #if DEBUG
 				// XNA checks for disposed textures here! -flibit
-				if (value != null)
+				/*if (value != null)
 				{
 					if (value.IsDisposed)
 					{
@@ -46,7 +46,7 @@ namespace Microsoft.Xna.Framework.Graphics
 							);
 						}
 					}
-				}
+				}*/
 #endif
 				textures[index] = value;
 				modifiedSamplers[index] = true;
