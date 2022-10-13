@@ -71,6 +71,8 @@ namespace Microsoft.Xna.Framework
 		/// </summary>
 		public int Y;
 
+
+
 		#endregion
 
 		#region Private Static Variables

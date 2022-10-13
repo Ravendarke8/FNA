@@ -55,6 +55,16 @@ namespace Microsoft.Xna.Framework
 		{
 		}
 
+		public Plane(Vector3 pointOnPlane, Vector3 normal)
+		{
+			Normal = normal;
+			D = -(
+				pointOnPlane.X * normal.X +
+				pointOnPlane.Y * normal.Y +
+				pointOnPlane.Z * normal.Z
+			);
+		}
+
 		public Plane(Vector3 normal, float d)
 		{
 			Normal = normal;
